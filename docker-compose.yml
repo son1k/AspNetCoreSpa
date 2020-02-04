@@ -5,7 +5,7 @@ services:
     image: ${DOCKER_REGISTRY-}poc-aspnetcore3
     build:
       context: .
-      dockerfile: src/AspNetCoreSpa.Web/Dockerfile
+      dockerfile: web.dockerfile
     networks:
       - app-network
 
@@ -13,7 +13,7 @@ services:
     image: ${DOCKER_REGISTRY-}poc-sts
     build:
       context: .
-      dockerfile: src/AspNetCoreSpa.STS/Dockerfile
+      dockerfile: sts.dockerfile
     networks:
       - app-network
 
