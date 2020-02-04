@@ -52,3 +52,13 @@ steps:
     command: 'buildAndPush'
     Dockerfile: 'web.dockerfile'
 
+- task: AzureWebAppContainer@1
+  inputs:
+    azureSubscription: 'Azure for Students Starter (d283f74c-f069-40e8-95b0-6cebd2b89fd5)'
+    appName: 'poc-sts-rodobens'
+    containers: 'k1n0/poc-sts:$(Build.BuildId)'
+- task: AzureWebAppContainer@1
+  inputs:
+    azureSubscription: 'Azure for Students Starter (d283f74c-f069-40e8-95b0-6cebd2b89fd5)'
+    appName: 'poc-rodobens'
+    containers: 'k1n0/poc-aspnetcore3:$(Build.BuildId)'
