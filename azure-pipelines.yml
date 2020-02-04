@@ -40,25 +40,18 @@ steps:
     command: 'test'
     arguments: '$(solution)'
 
-- task: DotNetCoreCLI@2
-  displayName: Publish
+- task: Docker@2
   inputs:
-    command: publish
-    publishWebProjects: true
-    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-    zipAfterPublish: true
-
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifacts: build'
+    containerRegistry: 'k1n0'
+    repository: 'poc-aspnetcore3'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+- task: AzureRmWebAppDeployment@4
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'build'
-    publishLocation: 'Container'
-
-- task: DownloadBuildArtifacts@0
-  inputs:
-    buildType: 'current'
-    downloadType: 'single'
-    artifactName: 'build'
-    downloadPath: '$(Build.ArtifactStagingDirectory)'
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure for Students Starter (d283f74c-f069-40e8-95b0-6cebd2b89fd5)'
+    appType: 'webAppContainer'
+    WebAppName: 'poc-rodobens'
+    DockerNamespace: 'k1n0'
+    DockerRepository: 'poc-aspnetcore3'
 
