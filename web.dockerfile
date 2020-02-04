@@ -32,7 +32,7 @@ COPY ["src/AspNetCoreSpa.Infrastructure/AspNetCoreSpa.Infrastructure.csproj", "A
 RUN dotnet restore "AspNetCoreSpa.Web/AspNetCoreSpa.Web.csproj"
 COPY ["src/AspNetCoreSpa.Web/ClientApp/package.json", "AspNetCoreSpa.Web/ClientApp/"]
 
-RUN cd src/AspNetCoreSpa.Web/ClientApp \
+RUN cd AspNetCoreSpa.Web/ClientApp \
     && npm i --silent
 
 COPY . .
