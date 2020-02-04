@@ -2,7 +2,7 @@ version: "3.6"
 
 services:
   aspnetcorespa:
-    image: ${DOCKER_REGISTRY-}aspnetcorespa
+    image: ${DOCKER_REGISTRY-}poc-aspnetcore3
     build:
       context: .
       dockerfile: src/AspNetCoreSpa.Web/Dockerfile
@@ -10,7 +10,7 @@ services:
       - app-network
 
   aspnetcorests:
-    image: ${DOCKER_REGISTRY-}aspnetcorests
+    image: ${DOCKER_REGISTRY-}poc-sts
     build:
       context: .
       dockerfile: src/AspNetCoreSpa.STS/Dockerfile
