@@ -39,7 +39,12 @@ steps:
   inputs:
     command: 'test'
     arguments: '$(solution)'
-
+- task: Docker@2
+  inputs:
+    containerRegistry: 'k1n0'
+    repository: 'poc-sts'
+    command: 'buildAndPush'
+    Dockerfile: 'sts.dockerfile'
 - task: Docker@2
   inputs:
     containerRegistry: 'k1n0'
@@ -47,17 +52,3 @@ steps:
     command: 'buildAndPush'
     Dockerfile: 'web.dockerfile'
 
- 
-- task: Docker@2
-  inputs:
-    containerRegistry: 'k1n0'
-    repository: 'poc-sts'
-    command: 'buildAndPush'
-    Dockerfile: 'sts.dockerfile'
-   
-
-- task: AzureWebAppContainer@1
-  inputs:
-    azureSubscription: 'Azure for Students Starter (d283f74c-f069-40e8-95b0-6cebd2b89fd5)'
-    appName: 'poc-rodobens'
-    multicontainerConfigFile: '**/docker-compose.yml'
