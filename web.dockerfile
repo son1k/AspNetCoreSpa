@@ -26,11 +26,11 @@ RUN apt-get -qq update && \
 # End setup
 
 WORKDIR /src
-COPY ["src/AspNetCoreSpa.Web/AspNetCoreSpa.Web.csproj", "AspNetCoreSpa.Web/"]
-COPY ["src/AspNetCoreSpa.Core/AspNetCoreSpa.Core.csproj", "AspNetCoreSpa.Core/"]
-COPY ["src/AspNetCoreSpa.Infrastructure/AspNetCoreSpa.Infrastructure.csproj", "AspNetCoreSpa.Infrastructure/"]
+COPY ["src/AspNetCoreSpa.Web/", "AspNetCoreSpa.Web/"]
+COPY ["src/AspNetCoreSpa.Core/", "AspNetCoreSpa.Core/"]
+COPY ["src/AspNetCoreSpa.Infrastructure/", "AspNetCoreSpa.Infrastructure/"]
 RUN dotnet restore "AspNetCoreSpa.Web/AspNetCoreSpa.Web.csproj"
-COPY ["src/AspNetCoreSpa.Web/ClientApp/package.json", "AspNetCoreSpa.Web/ClientApp/"]
+COPY ["src/AspNetCoreSpa.Web/ClientApp/", "AspNetCoreSpa.Web/ClientApp/"]
 
 RUN cd AspNetCoreSpa.Web/ClientApp \
     && npm i --silent
