@@ -9,7 +9,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0-buster AS build
 WORKDIR /src
 COPY ["src/AspNetCoreSpa.STS/AspNetCoreSpa.STS.csproj", "AspNetCoreSpa.STS/"]
-RUN dotnet restore "src/AspNetCoreSpa.STS/AspNetCoreSpa.STS.csproj"
+RUN dotnet restore "AspNetCoreSpa.STS/AspNetCoreSpa.STS.csproj"
 COPY . .
 WORKDIR /src/AspNetCoreSpa.STS
 RUN dotnet build "AspNetCoreSpa.STS.csproj" -c Release -o /app
