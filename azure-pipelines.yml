@@ -42,13 +42,13 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'k1n0'
-    repository: 'poc-sts'
+    repository: 'k1n0/poc-sts'
     command: 'buildAndPush'
     Dockerfile: 'sts.dockerfile'
 - task: Docker@2
   inputs:
     containerRegistry: 'k1n0'
-    repository: 'poc-aspnetcore3'
+    repository: 'k1n0/poc-aspnetcore3'
     command: 'buildAndPush'
     Dockerfile: 'web.dockerfile'
 
