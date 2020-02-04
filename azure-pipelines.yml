@@ -45,7 +45,7 @@ steps:
     containerRegistry: 'k1n0'
     repository: 'poc-aspnetcore3'
     command: 'buildAndPush'
-    Dockerfile: 'src/AspNetCoreSpa.Web/Dockerfile'
+    Dockerfile: 'web.dockerfile'
 
  
 - task: Docker@2
@@ -53,14 +53,11 @@ steps:
     containerRegistry: 'k1n0'
     repository: 'poc-sts'
     command: 'buildAndPush'
-    Dockerfile: 'src/AspNetCoreSpa.Web/Dockerfile'
+    Dockerfile: 'sts.dockerfile'
    
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Azure for Students Starter (d283f74c-f069-40e8-95b0-6cebd2b89fd5)'
-    appType: 'webAppContainer'
-    WebAppName: 'poc-rodobens'
-    DockerNamespace: 'k1n0'
-    DockerRepository: 'poc-aspnetcore3'
 
+- task: AzureWebAppContainer@1
+  inputs:
+    azureSubscription: 'Azure for Students Starter (d283f74c-f069-40e8-95b0-6cebd2b89fd5)'
+    appName: 'poc-rodobens'
+    multicontainerConfigFile: '**/docker-compose.yml'
