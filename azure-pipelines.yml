@@ -45,7 +45,16 @@ steps:
     containerRegistry: 'k1n0'
     repository: 'poc-aspnetcore3'
     command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+    Dockerfile: 'src/AspNetCoreSpa.Web/Dockerfile'
+
+ 
+- task: Docker@2
+  inputs:
+    containerRegistry: 'k1n0'
+    repository: 'poc-sts'
+    command: 'buildAndPush'
+    Dockerfile: 'src/AspNetCoreSpa.Web/Dockerfile'
+   
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
